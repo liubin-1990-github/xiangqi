@@ -1,4 +1,4 @@
 # xiangqi
-![ddd](https://github.com/liubin-1990-github/xiangqi/blob/cc11e0f4c635d5ca2183c279eed02a4779ae7f4f/1.png)
+![ddd](1.png)
 ![文件名](https://github.com/liubin-1990-github/xiangqi/blob/cc11e0f4c635d5ca2183c279eed02a4779ae7f4f/1.png)
 ![gif](https://github.com/liubin-1990-github/xiangqi/blob/master/test.gif)
