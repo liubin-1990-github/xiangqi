@@ -1,2 +1,2 @@
 # xiangqi
-![](https://github.com/liubin-1990-github/xiangqi/blob/master/1.png)
+![ddd](https://github.com/liubin-1990-github/xiangqi/blob/master/1.png)
