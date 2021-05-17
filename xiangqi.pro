@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets core
 
@@ -26,8 +26,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         widget.cpp \
-    stone.cpp
+    stone.cpp \
+    netgame.cpp
 
 HEADERS += \
         widget.h \
-    stone.h
+    stone.h \
+    netgame.h

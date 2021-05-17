@@ -121,83 +121,84 @@ void Widget::mouseReleaseEvent(QMouseEvent *ev)
    {
        return ;
    }
-   //判断行列值上面有没有棋子
+    click(row,col);
+//   //判断行列值上面有没有棋子
 
 
-   int i=0;
-   int clickId=-1;
-   for(i=0;i<32;i++)
-   {
-       if(_s[i]._row ==row &&_s[i]._col==col&&_s[i]._dead==false)
-       {
-           break;
-       }
-   }
-   //i 棋子被选中
-    if(i<32)
-    {
-        clickId =i;
-    }
-    if(_selectId==-1) //点击要么是选择棋子  else 移动棋子
-    {
-        if(clickId!=-1)
-        {
-            if(_bRedTurn ==_s[clickId]._red)
-            {
-               _selectId =clickId; //选中的棋子存入selectId
-               update();//选中棋子变色
-            }
-//            else if(_bRedTurn !=_s[clickId]._red)
+//   int i=0;
+//   int clickId=-1;
+//   for(i=0;i<32;i++)
+//   {
+//       if(_s[i]._row ==row &&_s[i]._col==col&&_s[i]._dead==false)
+//       {
+//           break;
+//       }
+//   }
+//   //i 棋子被选中
+//    if(i<32)
+//    {
+//        clickId =i;
+//    }
+//    if(_selectId==-1) //点击要么是选择棋子  else 移动棋子
+//    {
+//        if(clickId!=-1)
+//        {
+//            if(_bRedTurn ==_s[clickId]._red)
 //            {
-//                return;
+//               _selectId =clickId; //选中的棋子存入selectId
+//               update();//选中棋子变色
+//            }
+////            else if(_bRedTurn !=_s[clickId]._red)
+////            {
+////                return;
+////            }
+
+//        }
+//    }
+
+//    //_selectId != -1 的话 说明已经选择了棋子 点第二次
+//    else   //移动棋子
+//    {
+//        if(canmove(_selectId,row,col,clickId))
+//        {
+//        //走棋代码
+//        _s[_selectId]._row=row;  //选择的棋子 行列更新到第二次点击的地方
+//        _s[_selectId]._col =col;
+//        if(clickId!=-1)
+//        {
+//            _s[clickId]._dead=true; //点击的有棋子就死
+//            int win=isWin(clickId);
+
+//            if(win == 1)
+//            {
+//                //red win
+//                redWinAnimation(successImg_Red);
+//                stone_ban = true;
+//                // ban stone
+
+
 //            }
 
-        }
-    }
+//            if(win  == 2)
+//            {
+//                //black win
+//                blackWinAnimation(successImg_Black);
 
-    //_selectId != -1 的话 说明已经选择了棋子 点第二次
-    else   //移动棋子
-    {
-        if(canmove(_selectId,row,col,clickId))
-        {
-        //走棋代码
-        _s[_selectId]._row=row;  //选择的棋子 行列更新到第二次点击的地方
-        _s[_selectId]._col =col;
-        if(clickId!=-1)
-        {
-            _s[clickId]._dead=true; //点击的有棋子就死
-            int win=isWin(clickId);
-
-            if(win == 1)
-            {
-                //red win
-                redWinAnimation(successImg_Red);
-                stone_ban = true;
-                // ban stone
+//                // ban stone
+//                stone_ban = true;
+//            }
 
 
-            }
+//            _s[clickId].~Stone();
 
-            if(win  == 2)
-            {
-                //black win
-                blackWinAnimation(successImg_Black);
-
-                // ban stone
-                stone_ban = true;
-            }
+//        }
 
 
-            _s[clickId].~Stone();
-
-        }
-
-
-        _selectId =-1;
-        _bRedTurn =!_bRedTurn;
-        update();  //更新第二次点击
-        }
-    }
+//        _selectId =-1;
+//        _bRedTurn =!_bRedTurn;
+//        update();  //更新第二次点击
+//        }
+//    }
 
 
 
@@ -416,6 +417,87 @@ bool Widget::canmove7(int moveId, int row, int col, int killId)
     return true;
 }
 
+void Widget::click(int row, int col)
+{
+    //判断行列值上面有没有棋子
+
+
+    int i=0;
+    int clickId=-1;
+    for(i=0;i<32;i++)
+    {
+        if(_s[i]._row ==row &&_s[i]._col==col&&_s[i]._dead==false)
+        {
+            break;
+        }
+    }
+    //i 棋子被选中
+     if(i<32)
+     {
+         clickId =i;
+     }
+     if(_selectId==-1) //点击要么是选择棋子  else 移动棋子
+     {
+         if(clickId!=-1)
+         {
+             if(_bRedTurn ==_s[clickId]._red)
+             {
+                _selectId =clickId; //选中的棋子存入selectId
+                update();//选中棋子变色
+             }
+ //            else if(_bRedTurn !=_s[clickId]._red)
+ //            {
+ //                return;
+ //            }
+
+         }
+     }
+
+     //_selectId != -1 的话 说明已经选择了棋子 点第二次
+     else   //移动棋子
+     {
+         if(canmove(_selectId,row,col,clickId))
+         {
+         //走棋代码
+         _s[_selectId]._row=row;  //选择的棋子 行列更新到第二次点击的地方
+         _s[_selectId]._col =col;
+         if(clickId!=-1)
+         {
+             _s[clickId]._dead=true; //点击的有棋子就死
+             int win=isWin(clickId);
+
+             if(win == 1)
+             {
+                 //red win
+                 redWinAnimation(successImg_Red);
+                 stone_ban = true;
+                 // ban stone
+
+
+             }
+
+             if(win  == 2)
+             {
+                 //black win
+                 blackWinAnimation(successImg_Black);
+
+                 // ban stone
+                 stone_ban = true;
+             }
+
+
+             _s[clickId].~Stone();
+
+         }
+
+
+         _selectId =-1;
+         _bRedTurn =!_bRedTurn;
+         update();  //更新第二次点击
+         }
+     }
+}
+
 int Widget::getStoneCount(int row1, int col1, int row2, int col2)
 {
     int ret=0;
@@ -560,7 +642,7 @@ void Widget::redInit()
     }
     _selectId=-1;
     stone_ban = false;
-    _bRedTurn =true;
+    _bRedTurn =false;
 
     update();
     backAnimation(successImg_Red);
@@ -573,7 +655,7 @@ void Widget::blackInit()
         _s[i].init(i);
     }
     _selectId=-1;
-    _bRedTurn =true;
+    _bRedTurn =false;
     stone_ban = false;
     update();
     backAnimation(successImg_Black);
@@ -581,13 +663,20 @@ void Widget::blackInit()
 
 void Widget::init()
 {
+    _bredSide = true;
 
     for(int i=0;i<32;i++)
     {
-        _s[i].init(i);
+        if(_bredSide == false)
+        {_s[i].init(i);}
+        else
+        {
+            _s[i]._red =!_s[i]._red;
+            _s[i].init(i);
+        }
     }
     _selectId=-1;
-    _bRedTurn =true; //1为 红色方
+    _bRedTurn =false; //1为 红色方
 //    update();
 }
 

@@ -3,6 +3,7 @@
 Stone::Stone()
 {
     _red = 5;
+
 }
 
 Stone::~Stone()

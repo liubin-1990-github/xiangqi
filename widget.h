@@ -18,6 +18,7 @@ public:
     ~Widget();
     bool _bRedTurn; //1 redturn    -1 blackturn      other  ban stone
     int _selectId ;
+    bool _bredSide; //如果下边是红 为1
     Stone _s[32]; //32颗棋子
     int _r;  // 半径
     QPoint center(int row,int col);//返回棋子行列对应的像素坐标
@@ -34,6 +35,7 @@ public:
     bool canmove5(int moveId, int row ,int col,int killId);
     bool canmove6(int moveId, int row ,int col,int killId);
     bool canmove7(int moveId, int row ,int col,int killId);
+    virtual void click(int row,int col);
     int getStoneCount(int row1,int col1,int row2,int col2); //2点之间有多少棋子
     int getStoneId(int row,int col);   //点上有棋子 返回棋子值  没有返回-1
 
